@@ -58,27 +58,36 @@ def letter_grades(highest):
     lower_thresh_list = []
     increment = round((highest - 40) / 4)
 
-    D_Grade = 41
-    C_Grade = D_Grade + increment
-    B_Grade = C_Grade + increment
-    A_Grade = B_Grade + increment
+    d_grade = 41
+    c_grade = d_grade + increment
+    b_grade = c_grade + increment
+    a_grade = b_grade + increment
 
-    lower_thresh_list.append(D_Grade)
-    lower_thresh_list.append(C_Grade)
-    lower_thresh_list.append(B_Grade)
-    lower_thresh_list.append(A_Grade)
+    lower_thresh_list.append(d_grade)
+    lower_thresh_list.append(c_grade)
+    lower_thresh_list.append(b_grade)
+    lower_thresh_list.append(a_grade)
 
     return lower_thresh_list
 
 
 def student_ranking(student_scores, student_names):
     """
-     :param student_scores: list of scores in descending order.
-     :param student_names: list of names in descending order by exam score.
-     :return: list of strings in format ["<rank>. <student name>: <score>"].
-     """
+    :param student_scores: list of scores in descending order.
+    :param student_names: list of names in descending order by exam score.
+    :return: list of strings in format ["<rank>. <student name>: <score>"].
+    """
 
-    pass
+    ranked_list = []
+    counter = 0
+
+    for name in student_names:
+        student_rank_str = str(counter + 1)
+        student_score_str = str(student_scores[counter])
+        ranked_list.append(f"{student_rank_str}. {name}: {student_score_str}")
+        counter += 1
+
+    return ranked_list
 
 
 def perfect_score(student_info):
@@ -86,4 +95,13 @@ def perfect_score(student_info):
     :param student_info: list of [<student name>, <score>] lists
     :return: first `[<student name>, 100]` or `[]` if no student score of 100 is found.
     """
-    pass
+
+    first_perfect_score = []
+
+    for bundle in student_info:
+        if bundle[1] == 100:
+            first_perfect_score.append(bundle[0])
+            first_perfect_score.append(bundle[1])
+            return first_perfect_score
+
+    return first_perfect_score
